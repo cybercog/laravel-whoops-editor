@@ -2,7 +2,7 @@
 
 <p align="center">
 <a href="https://travis-ci.org/cybercog/laravel-whoops-editor"><img src="https://img.shields.io/travis/cybercog/laravel-whoops-editor/master.svg?style=flat-square" alt="Build Status"></a>
-<a href="https://styleci.io/repos/83971055"><img src="https://styleci.io/repos/83971055/shield" alt="StyleCI"></a>
+<a href="https://styleci.io/repos/114317434"><img src="https://styleci.io/repos/114317434/shield" alt="StyleCI"></a>
 <a href="https://github.com/cybercog/laravel-whoops-editor/releases"><img src="https://img.shields.io/github/release/cybercog/laravel-whoops-editor.svg?style=flat-square" alt="Releases"></a>
 <a href="https://github.com/cybercog/laravel-whoops-editor/blob/master/LICENSE"><img src="https://img.shields.io/github/license/cybercog/laravel-whoops-editor.svg?style=flat-square" alt="License"></a>
 </p>
@@ -13,7 +13,7 @@ Laravel Whoops Editor helps to open your code editor from exception stack trace.
 
 This feature was introduced in Laravel 5.5.25, but unfortunately has issues on Linux machines.
 
-Laravel Whoops Editor fixes PHPStorm, IDEA and Sublime.
+Laravel Whoops Editor fixes PHPStorm, IDEA and SublimeText support.
 
 For Atom support you can use [Mike Bronner's](https://github.com/mikebronner) [laravel-whoops-atom](https://github.com/GeneaLabs/laravel-whoops-atom) package.
 
