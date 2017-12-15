@@ -1,5 +1,7 @@
 # Laravel Whoops Editor
 
+![cog-laravel-whoops-editor](https://user-images.githubusercontent.com/1849174/34024771-22500272-e15d-11e7-8694-37fce84c5c44.png)
+
 <p align="center">
 <a href="https://travis-ci.org/cybercog/laravel-whoops-editor"><img src="https://img.shields.io/travis/cybercog/laravel-whoops-editor/master.svg?style=flat-square" alt="Build Status"></a>
 <a href="https://styleci.io/repos/114317434"><img src="https://styleci.io/repos/114317434/shield" alt="StyleCI"></a>
