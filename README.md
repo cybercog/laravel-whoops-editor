@@ -1,6 +1,6 @@
 # Laravel Whoops Editor
 
-![cog-laravel-whoops-editor](https://user-images.githubusercontent.com/1849174/34024771-22500272-e15d-11e7-8694-37fce84c5c44.png)
+![cog-laravel-whoops-editor](https://user-images.githubusercontent.com/1849174/34025716-77df6958-e162-11e7-858a-f2196f4e2372.png)
 
 <p align="center">
 <a href="https://travis-ci.org/cybercog/laravel-whoops-editor"><img src="https://img.shields.io/travis/cybercog/laravel-whoops-editor/master.svg?style=flat-square" alt="Build Status"></a>
