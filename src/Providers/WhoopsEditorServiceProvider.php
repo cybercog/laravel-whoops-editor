@@ -32,7 +32,7 @@ class WhoopsEditorServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(): void
+    public function boot()
     {
         $this->registerPublishes();
         $this->overwriteAppConfig();
@@ -43,7 +43,7 @@ class WhoopsEditorServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register(): void
+    public function register()
     {
         $this->configure();
     }
@@ -53,7 +53,7 @@ class WhoopsEditorServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function configure(): void
+    protected function configure()
     {
         $this->mergeConfigFrom(
             __DIR__ . '/../../config/whoops-editor.php', 'whoops-editor'
@@ -65,7 +65,7 @@ class WhoopsEditorServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerPublishes(): void
+    protected function registerPublishes()
     {
         $this->publishes([
             __DIR__ . '/../../config/whoops-editor.php' => config_path('whoops-editor.php'),
@@ -93,7 +93,7 @@ class WhoopsEditorServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function overwriteAppConfig(): void
+    protected function overwriteAppConfig()
     {
         $this->config = $this->app->make('config');
         $editor = $this->resolveEditor();
