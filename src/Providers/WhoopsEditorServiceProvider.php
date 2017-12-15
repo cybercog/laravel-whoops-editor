@@ -109,8 +109,8 @@ class WhoopsEditorServiceProvider extends ServiceProvider
      */
     private function buildUri(string $uri, string $filePath, int $line): string
     {
-        $uri = str_replace("%file", $filePath, $uri);
-        $uri = str_replace("%line", $line, $uri);
+        $uri = str_replace('%file', $filePath, $uri);
+        $uri = str_replace('%line', $line, $uri);
 
         return $uri;
     }
