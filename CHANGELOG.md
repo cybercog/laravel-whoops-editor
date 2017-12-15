@@ -11,8 +11,8 @@ All notable changes to `laravel-whoops-editor` will be documented in this file.
 
 ### Changed
 
-- `resolveEditor` method not require config argument
-- `resolveFilePath` method not require config argument
+- `resolveEditor` method in `WhoopsEditorServiceProvider` not require `$config` argument
+- `resolveFilePath` method `WhoopsEditorServiceProvider` not require `$config` argument
 
 ## [2.0.0] - 2017-12-15
 
