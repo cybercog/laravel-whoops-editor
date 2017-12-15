@@ -15,7 +15,7 @@ Laravel Whoops Editor helps to open your code editor from exception stack trace.
 
 This feature was introduced in Laravel 5.5.25, but unfortunately has issues on Linux machines.
 
-Laravel Whoops Editor fixes PHPStorm, IDEA and SublimeText support.
+Laravel Whoops Editor fixes PHPStorm, IDEA and SublimeText Linux support.
 
 For Atom support you can use [Mike Bronner's](https://github.com/mikebronner) [laravel-whoops-atom](https://github.com/GeneaLabs/laravel-whoops-atom) package.
 
