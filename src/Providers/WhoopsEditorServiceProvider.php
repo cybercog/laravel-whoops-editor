@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Cog\Laravel\WhoopsEditor\Providers;
 
-use Illuminate\Contracts\Config\Repository as ConfigContract;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -24,11 +23,16 @@ use Illuminate\Support\ServiceProvider;
 class WhoopsEditorServiceProvider extends ServiceProvider
 {
     /**
+     * @var \Illuminate\Contracts\Config\Repository
+     */
+    private $config;
+
+    /**
      * Bootstrap the application services.
      *
      * @return void
      */
-    public function boot(): void
+    public function boot()
     {
         $this->registerPublishes();
         $this->overwriteAppConfig();
@@ -39,7 +43,7 @@ class WhoopsEditorServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register(): void
+    public function register()
     {
         $this->configure();
     }
@@ -49,7 +53,7 @@ class WhoopsEditorServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function configure(): void
+    protected function configure()
     {
         $this->mergeConfigFrom(
             __DIR__ . '/../../config/whoops-editor.php', 'whoops-editor'
@@ -61,38 +65,11 @@ class WhoopsEditorServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerPublishes(): void
+    protected function registerPublishes()
     {
         $this->publishes([
             __DIR__ . '/../../config/whoops-editor.php' => config_path('whoops-editor.php'),
         ], 'config');
-    }
-
-    /**
-     * Overwrite application config with Whoops Editor.
-     *
-     * @return void
-     */
-    protected function overwriteAppConfig(): void
-    {
-        $config = $this->app->make('config');
-        $editor = $this->resolveEditor($config);
-        $editorConfig = $config->get('whoops-editor.editors.' . $editor);
-        if (!$editorConfig) {
-            return;
-        }
-
-        $config->set('app.editor', function ($filePath, $line) use ($config, $editorConfig) {
-            $filePath = $this->resolveFilePath($config, $filePath);
-
-            if (is_string($editorConfig)) {
-                return $this->buildUri($editorConfig, $filePath, $line);
-            }
-
-            $editorConfig['url'] = $this->buildUri($editorConfig['url'], $filePath, $line);
-
-            return $editorConfig;
-        });
     }
 
     /**
@@ -112,27 +89,64 @@ class WhoopsEditorServiceProvider extends ServiceProvider
     }
 
     /**
+     * Overwrite application editor config with Whoops Editor.
+     *
+     * @return void
+     */
+    protected function overwriteAppConfig()
+    {
+        $this->config = $this->app->make('config');
+        $editor = $this->resolveEditor();
+        $editorConfig = $this->config->get('whoops-editor.editors.' . $editor);
+        if (!$editorConfig) {
+            $this->overwriteAppEditor($editor);
+
+            return;
+        }
+
+        $this->overwriteAppEditor(function ($filePath, $line) use ($editorConfig) {
+            $filePath = $this->resolveFilePath($filePath);
+
+            if (is_string($editorConfig)) {
+                return $this->buildUri($editorConfig, $filePath, $line);
+            }
+
+            $editorConfig['url'] = $this->buildUri($editorConfig['url'], $filePath, $line);
+
+            return $editorConfig;
+        });
+    }
+
+    /**
+     * Overwrite application editor configuration value.
+     *
+     * @param string|\Closure $editor
+     */
+    protected function overwriteAppEditor($editor)
+    {
+        $this->config->set('app.editor', $editor);
+    }
+
+    /**
      * Resolve code editor.
      *
-     * @param \Illuminate\Contracts\Config\Repository $config
      * @return mixed
      */
-    protected function resolveEditor(ConfigContract $config)
+    protected function resolveEditor()
     {
-        return $config->get('app.editor', $config->get('whoops-editor.editor'));
+        return $this->config->get('app.editor', $this->config->get('whoops-editor.editor'));
     }
 
     /**
      * Resolve file path when using Homestead.
      *
-     * @param \Illuminate\Contracts\Config\Repository $config
      * @param string $filePath
      * @return string
      */
-    protected function resolveFilePath(ConfigContract $config, string $filePath): string
+    protected function resolveFilePath(string $filePath): string
     {
-        $localPath = $config->get('whoops-editor.local-projects-path');
-        $homesteadPath = $config->get('whoops-editor.homestead-projects-path');
+        $localPath = $this->config->get('whoops-editor.local-projects-path');
+        $homesteadPath = $this->config->get('whoops-editor.homestead-projects-path');
 
         if (!$localPath || !$homesteadPath) {
             return $filePath;
