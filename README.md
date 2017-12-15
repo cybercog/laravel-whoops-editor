@@ -17,7 +17,7 @@ This feature was introduced in Laravel 5.5.25, but unfortunately has issues on L
 
 Laravel Whoops Editor fixes PHPStorm, IDEA and SublimeText Linux support.
 
-For Atom support you can use [Mike Bronner's](https://github.com/mikebronner) [laravel-whoops-atom](https://github.com/GeneaLabs/laravel-whoops-atom) package.
+For Atom support you can use [Mike Bronner's](https://github.com/mikebronner) [laravel-whoops-atom](https://github.com/GeneaLabs/laravel-whoops-atom) package or publish config and specify launch path in editors config section.
 
 ## Contents
 
