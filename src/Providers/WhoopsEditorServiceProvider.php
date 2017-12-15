@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Cog\Laravel\WhoopsEditor\Providers;
 
+use Illuminate\Contracts\Config\Repository as ConfigContract;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -30,7 +31,7 @@ class WhoopsEditorServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerPublishes();
-        $this->overwriteConfig();
+        $this->overwriteAppConfig();
     }
 
     /**
@@ -72,22 +73,17 @@ class WhoopsEditorServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function overwriteConfig(): void
+    protected function overwriteAppConfig(): void
     {
         $config = $this->app->make('config');
-        $editorConfig = $config->get('whoops-editor.editors.' . $config->get('app.editor'));
+        $editor = $this->resolveEditor($config);
+        $editorConfig = $config->get('whoops-editor.editors.' . $editor);
         if (!$editorConfig) {
             return;
         }
 
-        $config->set('app.editor', function ($filePath, $line) use ($editorConfig) {
-            $homestead = rtrim(config('whoops-editor.homestead-projects-path', ''), '/');
-            $local = rtrim(config('whoops-editor.local-projects-path', ''), '/');
-            if (!$local) {
-                return '';
-            }
-
-            $filePath = str_replace("{$homestead}/", "{$local}/", $filePath);
+        $config->set('app.editor', function ($filePath, $line) use ($config, $editorConfig) {
+            $filePath = $this->resolveFilePath($config, $filePath);
 
             if (is_string($editorConfig)) {
                 return $this->buildUri($editorConfig, $filePath, $line);
@@ -107,11 +103,44 @@ class WhoopsEditorServiceProvider extends ServiceProvider
      * @param int $line
      * @return string
      */
-    private function buildUri(string $uri, string $filePath, int $line): string
+    protected function buildUri(string $uri, string $filePath, int $line): string
     {
         $uri = str_replace('%file', $filePath, $uri);
         $uri = str_replace('%line', $line, $uri);
 
         return $uri;
+    }
+
+    /**
+     * Resolve code editor.
+     *
+     * @param \Illuminate\Contracts\Config\Repository $config
+     * @return mixed
+     */
+    protected function resolveEditor(ConfigContract $config)
+    {
+        return $config->get('app.editor', $config->get('whoops-editor.editor'));
+    }
+
+    /**
+     * Resolve file path when using Homestead.
+     *
+     * @param \Illuminate\Contracts\Config\Repository $config
+     * @param string $filePath
+     * @return string
+     */
+    protected function resolveFilePath(ConfigContract $config, string $filePath): string
+    {
+        $localPath = $config->get('whoops-editor.local-projects-path');
+        $homesteadPath = $config->get('whoops-editor.homestead-projects-path');
+
+        if (!$localPath || !$homesteadPath) {
+            return $filePath;
+        }
+
+        $local = rtrim($localPath, '/');
+        $homestead = rtrim($homesteadPath, '/');
+
+        return str_replace("{$homestead}/", "{$local}/", $filePath);
     }
 }

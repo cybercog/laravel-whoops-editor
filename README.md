@@ -13,9 +13,9 @@
 
 Laravel Whoops Editor helps to open your code editor from exception stack trace. Go to code editor in a blink of an eye!
 
-This feature was introduced in Laravel 5.5.25, but unfortunately has issues on Linux machines.
+This feature was introduced in Laravel 5.5.25, but unfortunately has issues on Linux machines. Laravel Whoops Editor fixes PHPStorm, IDEA and SublimeText Linux support.
 
-Laravel Whoops Editor fixes PHPStorm, IDEA and SublimeText Linux support.
+Additionally allows you to open editor when using Homestead.
 
 For Atom support you can use [Mike Bronner's](https://github.com/mikebronner) [laravel-whoops-atom](https://github.com/GeneaLabs/laravel-whoops-atom) package or publish config and specify launch path in editors config section.
 
@@ -24,6 +24,7 @@ For Atom support you can use [Mike Bronner's](https://github.com/mikebronner) [l
 - [Features](#features)
 - [Requirements](#requirements)
 - [Installation](#installation)
+- [Configuration](#configuration)
 - [Usage](#usage)
 - [Change log](#change-log)
 - [Contributing](#contributing)
@@ -39,6 +40,7 @@ For Atom support you can use [Mike Bronner's](https://github.com/mikebronner) [l
 - PHPStorm cross-platform support.
 - IDEA cross-platform support.
 - Sublime cross-platform support.
+- Allow opening code editor when using Homestead.
 - Following PHP Standard Recommendations:
   - [PSR-1 (Basic Coding Standard)](http://www.php-fig.org/psr/psr-1/).
   - [PSR-2 (Coding Style Guide)](http://www.php-fig.org/psr/psr-2/).
@@ -62,15 +64,25 @@ First, pull in the package through Composer:
 $ composer require cybercog/laravel-whoops-editor --dev
 ```
 
+## Configuration
+
+Package designed to work right out of the box, but you could publish configuration file to tweak settings:
+
+```sh
+$ php artisan vendor:publish --provider="Cog\Laravel\WhoopsEditor\Providers\WhoopsEditorServiceProvider" --tag="config"
+```
+
 ## Usage
 
-Specify your editor by adding `editor` key to the `./config/app.php` configuration file.
+Specify your editor by adding `APP_EDITOR=phpstorm` in `.env` file.
+
+Optionally you can specify editor by adding `editor` key to the `./config/app.php` configuration file.
 
 ```php
 'editor' => 'phpstorm',
 ```
 
-This package provides updated editors support for: `phpstorm`, `idea`, `sublime`.
+This package provides extended Linux support for editors: `phpstorm`, `idea`, `sublime`.
 
 Complete list of supported editors could be found in [Whoops documentation](https://github.com/filp/whoops/blob/master/docs/Open%20Files%20In%20An%20Editor.md).
 
