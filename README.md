@@ -52,10 +52,6 @@ For Atom support you can use [Mike Bronner's](https://github.com/mikebronner) [l
 - PHP >= 7.0.0
 - Laravel >= 5.5.25
 
-#### Sublime editor
-
-If you are using Sublime you should install [Sublime Protocol Handler](https://github.com/thecotne/subl-protocol).
-
 ## Installation
 
 First, pull in the package through Composer:
@@ -85,6 +81,15 @@ Optionally you can specify editor by adding `editor` key to the `./config/app.ph
 This package provides extended Linux support for editors: `phpstorm`, `idea`, `sublime`.
 
 Complete list of supported editors could be found in [Whoops documentation](https://github.com/filp/whoops/blob/master/docs/Open%20Files%20In%20An%20Editor.md).
+
+### Protocol Handlers
+
+If your OS trying to open file in web browser instead of code editor you should install Protocol Handler.
+
+| Editor | Protocol | Linux | MacOS | Windows |
+| ------ | -------- | ----- | ----- | ------- |
+| SublimeText | `subl://` | [thecotne/subl-protocol](https://github.com/thecotne/subl-protocol) | - | - |
+| Atom | `atm://` | [eclemens/atom-url-handler](https://github.com/eclemens/atom-url-handler) | [WizardOfOgz/atom-handler](https://github.com/WizardOfOgz/atom-handler) | - |
 
 ## Change log
 
