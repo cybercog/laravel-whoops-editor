@@ -26,6 +26,7 @@ For Atom support you can use [Mike Bronner's](https://github.com/mikebronner) [l
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
+  - [Protocol Handlers](#protocol-handlers)
 - [Change log](#change-log)
 - [Contributing](#contributing)
 - [Testing](#testing)
