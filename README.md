@@ -125,7 +125,7 @@ If you discover any security related issues, please email open@cybercog.su inste
 
 ## License
 
-- `Laravel Whoops Editor` package is open-sourced software licensed under the [MIT License](LICENSE).
+- `Laravel Whoops Editor` package is open-sourced software licensed under the [MIT License](LICENSE) by Anton Komarev.
 - `Error In Document` image licensed under [Creative Commons 3.0](https://creativecommons.org/licenses/by/3.0/us/) by Kid A.
 
 ## About CyberCog
