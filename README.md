@@ -114,7 +114,7 @@ If you discover any security related issues, please email open@cybercog.su inste
 
 ## Contributors
 
-| <a href="https://github.com/a-komarev">![@a-komarev](https://avatars.githubusercontent.com/u/1849174?s=110)<br />Anton Komarev</a> |
+| <a href="https://github.com/antonkomarev">![@antonkomarev](https://avatars.githubusercontent.com/u/1849174?s=110)<br />Anton Komarev</a> |
 | :---: |
 
 [Laravel Whoops Editor contributors list](../../contributors)
