@@ -57,7 +57,7 @@ For Atom support you can use [Mike Bronner's](https://github.com/mikebronner) [l
 
 First, pull in the package through Composer:
 
-```sh
+```shell script
 $ composer require cybercog/laravel-whoops-editor --dev
 ```
 
@@ -65,7 +65,7 @@ $ composer require cybercog/laravel-whoops-editor --dev
 
 Package designed to work right out of the box, but you could publish configuration file to tweak settings:
 
-```sh
+```shell script
 $ php artisan vendor:publish --provider="Cog\Laravel\WhoopsEditor\Providers\WhoopsEditorServiceProvider" --tag="config"
 ```
 
@@ -104,7 +104,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 Run the tests with:
 
-```sh
+```shell script
 $ vendor/bin/phpunit
 ```
 
