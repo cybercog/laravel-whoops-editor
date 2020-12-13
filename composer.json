@@ -31,7 +31,7 @@
         "docs": "https://github.com/cybercog/laravel-whoops-editor/wiki"
     },
     "require": {
-        "php": "^7.0",
+        "php": "^7.0 || ^8.0",
         "filp/whoops": "~2.0",
         "illuminate/support": ">=5.5.25"
     },
