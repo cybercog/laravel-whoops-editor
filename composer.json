@@ -31,14 +31,14 @@
         "docs": "https://github.com/cybercog/laravel-whoops-editor/wiki"
     },
     "require": {
-        "php": "^7.0",
-        "filp/whoops": "~2.0",
-        "illuminate/support": ">=5.5.25"
+        "php": "^8.0",
+        "filp/whoops": "^2.14",
+        "illuminate/support": "^9.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^1.11",
-        "orchestra/testbench": "~3.5.0",
-        "phpunit/phpunit": "^6.0"
+        "friendsofphp/php-cs-fixer": "^3.5",
+        "orchestra/testbench": "^7.0",
+        "phpunit/phpunit": "^9.5.10"
     },
     "autoload": {
         "psr-4": {
@@ -64,5 +64,5 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable" : true
+    "prefer-stable": true
 }
